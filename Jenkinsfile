@@ -69,7 +69,7 @@ pipeline {
                             sh 'docker tag nodeapp-dev:trunk blackindark/nodeapp-prod:latest'
                             sh 'docker push blackindark/nodeapp-prod:latest'
                             sh 'docker save blackindark/nodeapp-prod:latest | gzip > nodeapp-prod-golden.tar.gz'
-                            sh 'docker run -p 9000:9000 blackindark/nodeapp-prod'
+                            sh 'docker run -p 9005:9000 blackindark/nodeapp-prod'
                         }
                     }
 
