@@ -32,7 +32,7 @@ pipeline {
         stage('Mocha Tests') {
           steps {
             sh 'docker run --name nodeapp-dev --network="bridge" -d \
-            -p 9000:9000 nodeapp-dev:trunk'
+            -p 9005:9000 nodeapp-dev:trunk'
             sh 'docker run --name test-image -v $PWD:/JUnit --network="bridge" \
             --link=nodeapp-dev -d -p 9001:9000 \
             test-image:latest'
@@ -69,7 +69,7 @@ pipeline {
                             sh 'docker tag nodeapp-dev:trunk blackindark/nodeapp-prod:latest'
                             sh 'docker push blackindark/nodeapp-prod:latest'
                             sh 'docker save blackindark/nodeapp-prod:latest | gzip > nodeapp-prod-golden.tar.gz'
-                            sh 'docker run -p 9005:9000 blackindark/nodeapp-prod'
+                            sh 'docker run -p 9000:9000 blackindark/nodeapp-prod'
                         }
                     }
 
